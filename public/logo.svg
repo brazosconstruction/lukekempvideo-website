@@ -1,0 +1,28 @@
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle with subtle gradient -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a1a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0a0a0a;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffa500;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ff8c00;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <circle cx="128" cy="128" r="120" fill="url(#bgGradient)" stroke="#333" stroke-width="2"/>
+  
+  <!-- Subtle film strip pattern around edge -->
+  <circle cx="128" cy="128" r="115" fill="none" stroke="#333" stroke-width="1" opacity="0.3"/>
+  
+  <!-- L Letter -->
+  <path d="M70 85 L70 170 L120 170 L120 155 L85 155 L85 85 Z" fill="url(#textGradient)" stroke="#ff8c00" stroke-width="1"/>
+  
+  <!-- K Letter -->
+  <path d="M140 85 L140 170 L155 170 L155 130 L175 170 L195 170 L170 125 L190 85 L170 85 L155 115 L155 85 Z" fill="url(#textGradient)" stroke="#ff8c00" stroke-width="1"/>
+  
+  <!-- Subtle highlight effects -->
+  <circle cx="128" cy="128" r="118" fill="none" stroke="url(#textGradient)" stroke-width="1" opacity="0.2"/>
+</svg>
