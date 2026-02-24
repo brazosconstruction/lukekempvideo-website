@@ -6,7 +6,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 // Cinematic section divider with video frame background
 const SectionDivider = ({ 
-  backgroundImage = 'https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1920&h=400&fit=crop',
+  backgroundImage = '/images/dividers/frame-1.jpg',
   height = 'h-32',
   opacity = 0.1 
 }) => {
@@ -53,7 +53,7 @@ const SectionDivider = ({
       <div
         ref={imageRef}
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${backgroundImage})` }}
+        style={{ backgroundImage: 'url(/images/dividers/frame-2.jpg)' }}
       />
       
       {/* Gradient overlays for seamless blending */}

@@ -120,21 +120,21 @@ export default function EnhancedServices() {
       icon: Film,
       title: 'Cinematic Production',
       description: 'Feature-quality video production that elevates your brand story with professional cinematography and expert post-production.',
-      backgroundImage: 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&h=400&fit=crop',
+      backgroundImage: '/images/services/frame-1.jpg',
       serviceType: 'cinematic'
     },
     {
       icon: Camera,
       title: 'Commercial Content',
       description: 'From product launches to corporate profiles, we create compelling visual content that drives engagement and converts viewers.',
-      backgroundImage: 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=600&h=400&fit=crop',
+      backgroundImage: '/images/services/frame-1.jpg',
       serviceType: 'commercial'
     },
     {
       icon: Clapperboard,
       title: 'Event Documentation',
       description: 'Capture the energy and emotion of your events with documentary-style coverage that tells the complete story.',
-      backgroundImage: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=600&h=400&fit=crop',
+      backgroundImage: '/images/services/frame-1.jpg',
       serviceType: 'events'
     }
   ];
@@ -171,7 +171,7 @@ export default function EnhancedServices() {
                 {/* Background Image */}
                 <div 
                   className="absolute inset-0 bg-cover bg-center opacity-10 group-hover:opacity-20 transition-opacity duration-500"
-                  style={{ backgroundImage: `url(${service.backgroundImage})` }}
+                  style={{ backgroundImage: `url(/images/services/frame-3.jpg)` }}
                 />
                 
                 {/* Content */}

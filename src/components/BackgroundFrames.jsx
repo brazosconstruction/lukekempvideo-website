@@ -1,123 +1,63 @@
-import { useEffect, useRef } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import React, { useState, useEffect } from 'react';
 
-gsap.registerPlugin(ScrollTrigger);
-
-// Floating background frames for visual interest
 const BackgroundFrames = () => {
-  const containerRef = useRef(null);
+  const [frames] = useState([
+    { id: 1, src: '/images/backgrounds/frame-1.jpg', style: { top: '10%', left: '5%', width: '120px', opacity: 0.15 }},
+    { id: 2, src: '/images/backgrounds/frame-2.jpg', style: { top: '25%', right: '8%', width: '140px', opacity: 0.12 }},
+    { id: 3, src: '/images/backgrounds/frame-3.jpg', style: { top: '45%', left: '3%', width: '100px', opacity: 0.18 }},
+    { id: 4, src: '/images/backgrounds/frame-4.jpg', style: { top: '60%', right: '12%', width: '160px', opacity: 0.1 }},
+    { id: 5, src: '/images/backgrounds/frame-5.jpg', style: { top: '75%', left: '10%', width: '110px', opacity: 0.16 }},
+    { id: 6, src: '/images/backgrounds/frame-6.jpg', style: { top: '35%', right: '25%', width: '90px', opacity: 0.14 }},
+    { id: 7, src: '/images/backgrounds/frame-7.jpg', style: { top: '15%', left: '30%', width: '130px', opacity: 0.11 }},
+    { id: 8, src: '/images/backgrounds/frame-8.jpg', style: { top: '55%', right: '30%', width: '95px', opacity: 0.17 }},
+    { id: 9, src: '/images/backgrounds/frame-9.jpg', style: { top: '80%', right: '5%', width: '125px', opacity: 0.13 }}
+  ]);
 
-  // Video frame images that will float in the background
-  const backgroundFrames = [
-    {
-      id: 1,
-      src: 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=400&h=300&fit=crop',
-      size: 'w-32 h-24',
-      position: 'top-20 left-10',
-      delay: 0
-    },
-    {
-      id: 2,
-      src: 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=400&h=300&fit=crop',
-      size: 'w-28 h-20',
-      position: 'top-40 right-20',
-      delay: 0.5
-    },
-    {
-      id: 3,
-      src: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&h=300&fit=crop',
-      size: 'w-36 h-24',
-      position: 'top-96 left-1/4',
-      delay: 1
-    },
-    {
-      id: 4,
-      src: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=400&h=300&fit=crop',
-      size: 'w-24 h-18',
-      position: 'bottom-40 right-10',
-      delay: 1.5
-    }
-  ];
+  const [visibleFrames, setVisibleFrames] = useState([]);
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      backgroundFrames.forEach((frame, index) => {
-        const element = containerRef.current?.querySelector(`[data-frame="${frame.id}"]`);
-        if (!element) return;
+    const timer = setTimeout(() => {
+      setVisibleFrames(frames);
+    }, 1000);
 
-        // Floating animation
-        gsap.to(element, {
-          y: "random(-20, 20)",
-          x: "random(-10, 10)",
-          rotation: "random(-2, 2)",
-          duration: "random(3, 6)",
-          ease: "power2.inOut",
-          repeat: -1,
-          yoyo: true,
-          delay: frame.delay
-        });
-
-        // Parallax scroll effect
-        gsap.to(element, {
-          yPercent: -50,
-          ease: "none",
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: true
-          }
-        });
-
-        // Fade in on scroll
-        gsap.fromTo(element, {
-          opacity: 0,
-          scale: 0.8
-        }, {
-          opacity: 0.15,
-          scale: 1,
-          duration: 1,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: element,
-            start: "top 90%",
-            end: "bottom 10%",
-            toggleActions: "play none none reverse"
-          }
-        });
-      });
-    }, containerRef);
-
-    return () => ctx.revert();
-  }, []);
+    return () => clearTimeout(timer);
+  }, [frames]);
 
   return (
-    <div ref={containerRef} className="absolute inset-0 pointer-events-none overflow-hidden">
-      {backgroundFrames.map((frame) => (
+    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+      {visibleFrames.map((frame, index) => (
         <div
           key={frame.id}
-          data-frame={frame.id}
-          className={`absolute ${frame.position} ${frame.size} rounded-lg overflow-hidden shadow-2xl`}
-          style={{ filter: 'blur(0.5px)' }}
+          className="absolute transition-all duration-1000 ease-out transform hover:scale-110"
+          style={{
+            ...frame.style,
+            animation: `float-${index % 3} ${6 + (index % 4)}s ease-in-out infinite`,
+            animationDelay: `${index * 0.5}s`
+          }}
         >
           <img
             src={frame.src}
             alt=""
-            className="w-full h-full object-cover"
+            className="w-full h-auto object-cover rounded-lg shadow-2xl filter blur-sm"
             loading="lazy"
           />
-          
-          {/* Film frame overlay */}
-          <div className="absolute inset-0 border-2 border-white/20 rounded-lg" />
-          
-          {/* Subtle glow effect */}
-          <div className="absolute inset-0 bg-gradient-to-tr from-brand-gold/10 to-transparent rounded-lg" />
-          
-          {/* Film grain */}
-          <div className="absolute inset-0 bg-noise opacity-30 mix-blend-multiply rounded-lg" />
         </div>
       ))}
+      
+      <style jsx>{`
+        @keyframes float-0 {
+          0%, 100% { transform: translateY(0px) rotate(0deg); }
+          50% { transform: translateY(-20px) rotate(2deg); }
+        }
+        @keyframes float-1 {
+          0%, 100% { transform: translateY(0px) rotate(0deg); }
+          50% { transform: translateY(-15px) rotate(-1deg); }
+        }
+        @keyframes float-2 {
+          0%, 100% { transform: translateY(0px) rotate(0deg); }
+          50% { transform: translateY(-25px) rotate(1deg); }
+        }
+      `}</style>
     </div>
   );
 };

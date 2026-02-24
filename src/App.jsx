@@ -34,17 +34,17 @@ export default function App() {
       <NoiseOverlay />
       <Navbar />
       <Hero />
-      <SectionDivider backgroundImage="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=1920&h=400&fit=crop" />
+      <SectionDivider backgroundImage="/images/dividers/frame-1.jpg" />
       <EnhancedServices />
-      <SectionDivider backgroundImage="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1920&h=400&fit=crop" />
+      <SectionDivider backgroundImage="/images/dividers/frame-2.jpg" />
       <Philosophy />
-      <SectionDivider backgroundImage="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1920&h=400&fit=crop" />
+      <SectionDivider backgroundImage="/images/dividers/frame-3.jpg" />
       <Process />
-      <SectionDivider backgroundImage="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1920&h=400&fit=crop" />
+      <SectionDivider backgroundImage="/images/dividers/frame-4.jpg" />
       <LatestProjects />
-      <SectionDivider backgroundImage="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1920&h=400&fit=crop" />
+      <SectionDivider backgroundImage="/images/dividers/frame-5.jpg" />
       <FrameGallery />
-      <SectionDivider backgroundImage="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1920&h=400&fit=crop" />
+      <SectionDivider backgroundImage="/images/dividers/frame-1.jpg" />
       <Portfolio />
       <Footer />
     </div>
