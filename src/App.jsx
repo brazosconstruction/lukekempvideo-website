@@ -11,6 +11,7 @@ import Services from './components/Services';
 import Philosophy from './components/Philosophy';
 import Process from './components/Process';
 import Portfolio from './components/Portfolio';
+import LatestProjects from './components/LatestProjects';
 import Footer from './components/Footer';
 import NoiseOverlay from './components/NoiseOverlay';
 
@@ -34,6 +35,7 @@ export default function App() {
       <Services />
       <Philosophy />
       <Process />
+      <LatestProjects />
       <Portfolio />
       <Footer />
     </div>
