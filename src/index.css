@@ -1,0 +1,240 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ═══════════════════════════════════════════
+   LUKE KEMP VIDEO — Cinematic Landing Page
+   Custom color system derived from brand:
+   Monochrome foundation + warm cinematic gold
+   ═══════════════════════════════════════════ */
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: 'Manrope', sans-serif;
+    background-color: #0B0B0F;
+    color: #F5F3F0;
+    overflow-x: hidden;
+    line-height: 1.6;
+  }
+
+  ::selection {
+    background-color: rgba(200, 169, 126, 0.3);
+    color: #FAFAF8;
+  }
+}
+
+/* ─── Noise Overlay ────────────────────────── */
+.noise-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.05;
+}
+
+/* ─── Scrollbar ────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0B0B0F;
+}
+::-webkit-scrollbar-thumb {
+  background: #2A2A34;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #C8A97E;
+}
+
+/* ─── Magnetic Button ──────────────────────── */
+.btn-magnetic {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.btn-magnetic:hover {
+  transform: scale(1.03);
+}
+.btn-magnetic .btn-bg {
+  position: absolute;
+  inset: 0;
+  transform: translateX(-101%);
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  z-index: 0;
+}
+.btn-magnetic:hover .btn-bg {
+  transform: translateX(0);
+}
+.btn-magnetic span {
+  position: relative;
+  z-index: 1;
+}
+
+/* ─── Link Lift ────────────────────────────── */
+.link-lift {
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              color 0.3s ease;
+}
+.link-lift:hover {
+  transform: translateY(-1px);
+  color: #C8A97E;
+}
+
+/* ─── Hero Video ───────────────────────────── */
+.hero-video-container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+.hero-video-container video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.hero-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(11, 11, 15, 0.4) 0%,
+    rgba(11, 11, 15, 0.2) 40%,
+    rgba(11, 11, 15, 0.6) 70%,
+    rgba(11, 11, 15, 0.95) 100%
+  );
+}
+
+/* ─── Navbar Blur ──────────────────────────── */
+.navbar-blur {
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  background-color: rgba(11, 11, 15, 0.7);
+}
+
+/* ─── Sticky Cards ─────────────────────────── */
+.sticky-card {
+  position: sticky;
+  transition: box-shadow 0.3s ease;
+}
+.sticky-card:hover {
+  box-shadow: 0 8px 32px rgba(200, 169, 126, 0.08);
+}
+
+/* ─── Service Card Hover ───────────────────── */
+.service-card {
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              border-color 0.5s ease;
+}
+.service-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(200, 169, 126, 0.4);
+}
+
+/* ─── Typewriter Cursor ────────────────────── */
+.typewriter-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1.2em;
+  background-color: #C8A97E;
+  margin-left: 2px;
+  animation: blink 1s step-end infinite;
+  vertical-align: text-bottom;
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* ─── Pulsing Status Dot ───────────────────── */
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #4ade80;
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+@keyframes pulse-dot {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.5); }
+  50% { box-shadow: 0 0 0 6px rgba(74, 222, 128, 0); }
+}
+
+/* ─── Philosophy Word Animation ────────────── */
+.word-reveal {
+  display: inline-block;
+  opacity: 0.15;
+  transition: opacity 0.3s ease;
+}
+.word-reveal.active {
+  opacity: 1;
+}
+
+/* ─── Video Portfolio Grid ─────────────────── */
+.portfolio-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1.5rem;
+}
+.portfolio-item::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(11, 11, 15, 0.8) 0%,
+    transparent 50%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.portfolio-item:hover::after {
+  opacity: 1;
+}
+
+/* ─── Responsive Typography ────────────────── */
+.hero-title {
+  font-size: clamp(2.5rem, 8vw, 7rem);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+}
+.section-title {
+  font-size: clamp(1.8rem, 4vw, 3.5rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+/* ─── SVG Animation for Process Cards ──────── */
+.svg-draw path {
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+  transition: stroke-dashoffset 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.svg-draw.active path {
+  stroke-dashoffset: 0;
+}
+
+/* ─── Shuffler Animation ──────────────────── */
+@keyframes shuffleIn {
+  0% { transform: translateY(20px) rotateX(-10deg); opacity: 0; }
+  100% { transform: translateY(0) rotateX(0); opacity: 1; }
+}
+.shuffle-item {
+  animation: shuffleIn 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
