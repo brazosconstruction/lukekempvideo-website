@@ -6,13 +6,27 @@ import BackgroundFrames from './BackgroundFrames';
 
 gsap.registerPlugin(ScrollTrigger);
 
-/* ── Diagnostic Shuffler: cycles through deliverables ── */
-function DiagnosticShuffler() {
-  const items = [
-    'Branded Films', 'Recruitment Videos', 'Testimonials',
-    'Social Content', 'Event Recaps', 'Aerial Footage',
-    'Product Showcases', 'Culture Videos', 'Launch Films',
-  ];
+/* ── Deliverables Shuffler: cycles through deliverables for each service ── */
+function DeliverablesShuffler({ serviceType }) {
+  const serviceItems = {
+    cinematic: [
+      'Branded Films', 'Recruitment Videos', 'Testimonials',
+      'Social Content', 'Event Recaps', 'Aerial Footage',
+      'Product Showcases', 'Culture Videos', 'Launch Films',
+    ],
+    commercial: [
+      'Product Launches', 'Corporate Profiles', 'Brand Stories',
+      'Sales Videos', 'Training Content', 'Case Studies',
+      'Promotional Reels', 'Social Campaigns', 'Demo Videos',
+    ],
+    events: [
+      'Live Coverage', 'Highlight Reels', 'Speaker Spotlights',
+      'Venue Tours', 'Behind Scenes', 'Audience Reactions',
+      'Keynote Captures', 'Interview Segments', 'Event Recaps',
+    ]
+  };
+
+  const items = serviceItems[serviceType] || serviceItems.cinematic;
   const [current, setCurrent] = useState(0);
   const [shuffling, setShuffling] = useState(false);
 
@@ -27,10 +41,10 @@ function DiagnosticShuffler() {
         setShuffling(false);
       }
     }, 80);
-  }, []);
+  }, [items.length]);
 
   useEffect(() => {
-    const timer = setInterval(shuffle, 4000);
+    const timer = setInterval(shuffle, 4000 + Math.random() * 2000); // Slightly different timing for each
     shuffle();
     return () => clearInterval(timer);
   }, [shuffle]);
@@ -106,19 +120,22 @@ export default function EnhancedServices() {
       icon: Film,
       title: 'Cinematic Production',
       description: 'Feature-quality video production that elevates your brand story with professional cinematography and expert post-production.',
-      backgroundImage: 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&h=400&fit=crop'
+      backgroundImage: 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&h=400&fit=crop',
+      serviceType: 'cinematic'
     },
     {
       icon: Camera,
       title: 'Commercial Content',
       description: 'From product launches to corporate profiles, we create compelling visual content that drives engagement and converts viewers.',
-      backgroundImage: 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=600&h=400&fit=crop'
+      backgroundImage: 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=600&h=400&fit=crop',
+      serviceType: 'commercial'
     },
     {
       icon: Clapperboard,
       title: 'Event Documentation',
       description: 'Capture the energy and emotion of your events with documentary-style coverage that tells the complete story.',
-      backgroundImage: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=600&h=400&fit=crop'
+      backgroundImage: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=600&h=400&fit=crop',
+      serviceType: 'events'
     }
   ];
 
@@ -171,8 +188,8 @@ export default function EnhancedServices() {
                     {service.description}
                   </p>
                   
-                  {/* Deliverables for the first card only */}
-                  {index === 0 && <DiagnosticShuffler />}
+                  {/* Deliverables shuffler for all cards */}
+                  <DeliverablesShuffler serviceType={service.serviceType} />
                 </div>
                 
                 {/* Hover effect overlay */}
